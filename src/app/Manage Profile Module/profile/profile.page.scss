@@ -1,0 +1,68 @@
+.copy{
+    text-align: center;  
+    margin: auto;   
+    
+    padding-top: 40px;
+  }
+
+  .profile-picture {
+    border-radius: 50%;
+    padding-bottom: 0px;
+}
+
+.container {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .outer {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 150px !important; /* any size */
+    max-height: 150px !important; /* any size */
+    margin: auto;
+    background-color: #6eafd4;
+    border-radius: 100%;
+    position: relative;
+    }
+    
+  .inner {
+    background-color:transparent;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  
+//    .inner:hover {
+
+    //     background-color: #5555ff;
+//   }
+.btndiv{
+  padding-top: 10%;
+}
+  .inputfile {
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: 1;
+      width: 50px;
+      height: 50px;
+  }
+  .camicon {
+   font-size: 1.25rem;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       display: inline-block;
+       overflow: hidden;
+      width: 50px;
+       height: 50px;
+       pointer-events: none;
+       cursor: pointer;
+       line-height: 50px;
+       text-align: center;
+   }

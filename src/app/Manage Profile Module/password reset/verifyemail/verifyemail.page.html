@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="forgotpassword"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">
+          Verify Email
+      </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form [formGroup]="verifyForm">
+      <ion-grid>
+          <ion-row color="secondary" justify-content-center>
+              <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <ion-row>
+                   <img class="logo1" src="../../assets/icon/logo_size.jpg"  width="600"
+                    height="337"
+                    style="width: 500px; height:300px;" />
+                       
+                   </ion-row>
+                   <ion-row>
+                    <h4 class="pleaseText" >Please Check Your email for Verification Code</h4>
+
+                   </ion-row>    
+                   <ion-row>
+                    <ion-item class="txtarea">
+                        <ion-input name="verificationcode" type="text" placeholder="Enter Your Verification code " formControlName="verificationcode"></ion-input>
+                    </ion-item>
+            
+                   </ion-row>
+
+                   <ion-row>   
+                 <ion-item  class="btn" >
+    <ion-button color="secondary" shape="round" size="large"  (click)="verify()" expand="block">Verify
+        <ion-spinner name="bubbles" *ngIf="clicked"></ion-spinner>
+    </ion-button>
+
+</ion-item>
+                    </ion-row>           
+<ion-row >
+    <p class="copy">Copyright 2021. All rights reserved.</p>
+    
+</ion-row>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>

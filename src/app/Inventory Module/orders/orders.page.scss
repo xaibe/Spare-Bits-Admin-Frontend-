@@ -1,0 +1,61 @@
+// .btns{
+//     width: 50%;
+//     height:250px;
+// }
+
+#btns{
+ width: 500px;
+     height:100px;
+    
+}
+#order{
+    padding-right: 65px;
+    margin:-55px ;
+    // text-align:left;
+    // display: flex;
+    // justify-content:left;
+    // display: grid;
+
+}
+
+.trashbtn{
+padding-bottom:10px;
+}
+
+.segmentdiv{
+padding-top: 50px;
+padding-bottom: 50px;
+    background: var(--ion-color-light);
+    ion-segment{
+    --background: var(--ion-color-primary);
+      border-radius: 20px;
+      --margin-top:5px ;
+      --margin-bottom:5px ;
+
+    }
+    ion-segment-button{
+        --background-checked: var(--ion-color-secondary);  
+    --indicator-color:var(--ion-color-secondary);
+    --border-radius: 20px;
+    --color:var(--ion-color-white);
+    --color-checked:var(--ion-color-light);
+    }
+}
+
+.iconss{
+    color: blueviolet;
+    height: 100%;
+    width:50px;
+}
+
+.mainDiv{
+    margin: auto;
+    text-align: center;
+    display: flex;
+    justify-content:center;
+    display: grid;
+}
+
+.items{
+    height:50%;
+}

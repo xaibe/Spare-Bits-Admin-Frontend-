@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Admin Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <form [formGroup]="loginForm">
+      <ion-grid>
+          <ion-row color="secondary" justify-content-center>
+              <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                <!-- <div class="ion-text-center">
+                      <img src="../../assets/icon/logo.jpg" width="1100px" height="1000px" />
+                  </div>
+                  -->
+                  <div id="txtareas">
+                      <ion-item>
+                          <ion-input name="email" type="email" placeholder="your@email.com" formControlName="email" inputmode="email"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-input name="password" type="password" placeholder="Password" formControlName="password"></ion-input>
+                      </ion-item>
+                  </div>
+                 
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+
+      <div id="btns">
+      <div class="ion-text-center">
+        <ion-button color="secondary" size="small" [disabled]="loginForm.invalid" (click)="save()" shape="round">Login
+            <ion-spinner name="bubbles" *ngIf="clicked"></ion-spinner>
+        </ion-button>
+    </div>
+
+
+    <div class="ion-text-center" id="fbtn">
+        <ion-button color="secondary" fill="clear" size="small" (click)="forgotPassword()" shape="round">Forgot Password?</ion-button>
+    </div>
+      </div>
+
+
+    <div class="ion-text-center" id="footer">
+        <p>Copyright 2020. All rights reserved.</p>
+    </div>
+  
+
+</form>
+</ion-content>

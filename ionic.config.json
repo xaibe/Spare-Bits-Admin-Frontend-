@@ -1,0 +1,7 @@
+{
+  "name": "SpareBitsAdmin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

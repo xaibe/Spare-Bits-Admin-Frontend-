@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">
+          Profile
+
+      </ion-title>
+      <ion-button fill="clear" slot="end" color="light" (click)="editclicked()">
+          <ion-icon name="create"></ion-icon>
+      </ion-button>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="getProfileData">
+    
+   
+      <ion-grid>
+          <ion-row class="ion-justify-content-center">
+              <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+
+               
+            
+         
+                <div class="container" *ngIf="clickededit">
+                    <div class="outer">
+                        <img class="profile-picture" [src]='img' width="150px" height="150px" 
+                    onerror="this.onerror=null;this.src='/assets/icon/avatar.jpg';"
+                  />
+                      <div class="inner">
+                      <input class="inputfile" type="file" name="pic" accept="image/*" (change)="onselect($event)" >
+                      <ion-icon class="camicon" name="camera-outline"></ion-icon>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="ion-text-center" *ngIf="!clickededit">
+                    <img class="profile-picture" src="{{baseimageurl}}{{img}}" width="150px" height="150px" 
+                    failedUrl="image"
+                    onerror="this.src='/assets/icon/avatar.jpg'"
+            />
+                </div>
+              
+
+                  <div style="position: relative; top:30px; ">
+                      <ion-item>
+                          <ion-label style="color:#0cd1e8;" position="stacked">Name</ion-label>
+                          <ion-input name="name" formControlName="name" type="text " value={{dataretrieved?.data?.name}}></ion-input>
+
+                      </ion-item>
+                      <ion-item>
+                          <ion-label style="color:#0cd1e8;" position="stacked">Email</ion-label>
+                          <ion-input name="email"  formControlName="email" type="text " value={{dataretrieved?.data?.email}}>
+                          </ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label style="color:#0cd1e8;" position="stacked">Mobile Number</ion-label>
+                          <ion-input name="mnumber " formControlName="mnumber" type="tel" pattern="[0-9]*" maxlength="11" value={{dataretrieved?.data?.mnumber}}>
+                          </ion-input>
+                      </ion-item>
+                  </div>
+
+                  <!-- div for address -->
+                  <div style="position: relative;top:40px; width: 100%; ">
+                      <ion-item>
+                          <ion-label style="color:#0cd1e8;" position="stacked">Address</ion-label>
+                          <ion-textarea auto-grow="true" formControlName="address" value={{dataretrieved?.data?.address}}>
+                          </ion-textarea>
+                      </ion-item>
+                  </div>
+
+                 
+
+                  <br><br>
+                  <div padding>
+                      <ion-button color="secondary" size="large" type="submit" shape="round" expand="block" *ngIf="clickededit" (click)="update()">Update
+                          <ion-spinner name="bubbles" *ngIf="clickedspinner"></ion-spinner>
+                      </ion-button>
+                  </div>
+                  <br><br><br><br><br><br><br><br><br><br>
+                  
+                  <div text-center>
+                  
+                    <p class="copy">Copyright 2021. All rights reserved.</p>
+                   
+                  </div>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,42 @@
+ion-item{
+    // --background: #3880ff;
+    --color: #3880ff;
+}
+
+ion-button{
+    --background: #062f77;
+}
+
+
+ ion-content.background{
+     --background: url('/assets/icon/logo_size.jpg') 40% 0/80% 45% no-repeat;
+ }
+
+ #txtareas {
+    position: relative;
+    top: 210px;
+    bottom: 0px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 20px 0;
+}
+#btns {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:150px;
+ }
+ #fbtn {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:120px;
+ }
+
+ #footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:60px;
+ }
+

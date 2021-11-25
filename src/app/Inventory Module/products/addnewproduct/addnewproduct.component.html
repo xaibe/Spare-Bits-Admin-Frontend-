@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'cancel'" (click)="dismiss()" defaultHref="products"></ion-back-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="">
+  <form [formGroup]="addNewProductForm">
+    <ion-grid>
+      <ion-row color="justify-content-center">
+        <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+          <div class="ion-text-center">
+            <h3 *ngIf="!product">Add New Product</h3>
+            <h3 *ngIf="product">Edit Product</h3>
+          </div>
+          <div class="ion-padding">
+            <ion-item>
+              <ion-input formControlName="name" type="text"  placeholder="Name" ></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="price" type="number" placeholder="Price"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input formControlName="stock" type="number" placeholder="Stock"></ion-input>
+            </ion-item>
+          
+            <div class="container">
+
+              <ion-item>
+                <ion-label>Catageory</ion-label>
+                <!-- <ion-select formControlName="catageory" placeholder="Select Categeory" #mySelect
+                (select)='onOptionsSelected(mySelect.value)' > -->
+                
+                 <ion-select formControlName="catageory" placeholder="Select Categeory" (ionChange)="onChange($event)"  >
+              
+                  <ion-select-option *ngFor="let categeorys of categeory" value="{{categeorys.id}}">{{categeorys.name}}</ion-select-option> 
+                </ion-select>
+                </ion-item>
+
+                <ion-item>
+  
+                <ion-label>SubCatageory</ion-label>
+                <ion-select  formControlName="subCatageory"  [disabled]="disableBtn" placeholder="Select SubCategeory">
+                 
+                  <ion-select-option *ngFor="let subcategeorys of subcategeory" value="{{subcategeorys.name}}">{{subcategeorys.name}}
+                  </ion-select-option>
+  
+                </ion-select>
+              </ion-item>
+              
+            </div>         
+
+           
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-textarea  formControlName="discription" placeholder="Discription"></ion-textarea>
+            </ion-item>
+           
+            
+          </div>
+<div class="container text-center">
+<img *ngFor='let url of urls'[src]="url" height="80" ><br>
+<input type="file" (change)="onselect($event)" multiple>
+</div>
+
+          <div class="ion-padding">
+            <!-- <ion-button size="large"  (click)="upload()" color="primary" type="submit"
+              expand="block">Upload Image &nbsp;<ion-spinner *ngIf="loading"></ion-spinner>
+
+            </ion-button> -->
+       
+            <ion-button size="large" [disabled]="addNewProductForm.invalid" (click)="save()" color="primary" type="submit"
+              expand="block">SAVE ! &nbsp;<ion-spinner *ngIf="loading"></ion-spinner>
+
+            </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

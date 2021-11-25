@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title  class="ion-text-center" >
+      Home
+    </ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+  <ion-content>
+  
+      <ion-button (click)="showusers()" color="tertiary" class="btn">
+        <ion-icon class="icon" name="people"></ion-icon>
+ 
+         </ion-button>
+  
+         <ion-button (click)="showproducts()" color="warning" class="btn">
+          <ion-icon class="icon" name="cart"></ion-icon>
+           </ion-button>
+  
+           <ion-button  (click)="showusers()" class="namelabl" color="tertiary">{{userscount}} </ion-button>
+           <ion-button (click)="showproducts()" class="namelabl" color="warning">{{productcount}} </ion-button>
+
+           <ion-button (click)="showusers()" class="namelabl" color="tertiary">Users </ion-button>
+           <ion-button (click)="showproducts()" class="namelabl" color="warning">Products </ion-button>
+
+           <ion-button (click)="showstores()" color="success" class="btn">
+            <ion-icon class="icon" name="storefront" ></ion-icon>
+            </ion-button>
+         
+            <ion-button  (click)="showorders()" color="secondary" class="btn">      
+            <ion-icon class="icon" name="clipboard-outline"></ion-icon>
+         
+             </ion-button>
+             
+             <ion-button (click)="showstores()" class="namelabl" color="success">{{storescount}} </ion-button>
+             <ion-button (click)="showorders()" class="namelabl" color="secondary">{{orderscount}} </ion-button>
+                   <ion-button (click)="showstores()" class="namelabl" color="success">Stores </ion-button>
+                   <ion-button (click)="showorders()"  class="namelabl" color="secondary">Orders </ion-button>
+         <!-- <ion-label> Users</ion-label> -->
+    
+  </ion-content>

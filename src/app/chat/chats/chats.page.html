@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+  </ion-buttons>
+    <ion-title id="pagename" class="ion-text-center">Chats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-card  *ngFor="let contact of contacts">
+<ion-card-content  class="ion-text-center" >
+  <img  class="image" (click)="openchat(contact)" *ngIf="contact.user_id !== userid && contact.user_imageUrl !=null"
+    width="50px" height="50px" src="{{baseimageurl}}{{contact.user_imageUrl}}" 
+  failedUrl="image" onerror="this.src='assets/icon/avatar.jpg'"/>
+  
+  <img class="image"  (click)="openchat(contact)" *ngIf="contact.contacted_userid !== userid && contact.contacteduser_imageUrl !=null"
+  width="50px" height="50px" src="{{baseimageurl}}{{contact.contacteduser_imageUrl}}" 
+  failedUrl="image" onerror="this.src='assets/icon/avatar.jpg'"/>
+  
+  <label class="name" *ngIf="contact.user_id !== userid" (click)="openchat(contact)">{{contact.user_name}}</label>
+  <label class="name" *ngIf="contact.contacted_userid !== currentuser" (click)="openchat(contact)">{{contact.contacteduser_name}}</label>
+
+  <ion-button class="buttonicon" fill="clear" slot="end" (click)="delete(contact)" >
+    <ion-icon name="trash" ></ion-icon>
+  </ion-button>  
+  
+  <div class="time" text-right><br>{{ contact.updatedAt | date:'short' }}</div>
+</ion-card-content>
+  </ion-card>
+  
+</ion-content>

@@ -1,0 +1,131 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button [text]="'cancel'" (click)="dismiss()" defaultHref="store"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!store" class="ion-text-center">Create New Store</ion-title>
+    <ion-title *ngIf="store" class="ion-text-center">Edit Store</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="">
+  <form [formGroup]="createStoreForm">
+    <ion-grid>
+      <ion-row color="justify-content-center">
+        <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+
+          <div class="ion-padding">
+            <ion-item>
+              <ion-input formControlName="name" type="text"  placeholder="Name" ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input type="tel" pattern="[0-9]*" placeholder="Mobile Number" 
+              maxlength="11" formControlName="Phone" ></ion-input>
+            </ion-item>
+          
+            <ion-item>
+              <ion-label >Address</ion-label>
+             
+            </ion-item>
+
+            <ion-item>  
+              <ion-input name="Address1" type="text" placeholder="Address1" formControlName="Address1">
+              </ion-input>
+            </ion-item>
+
+             <ion-item>
+               <ion-input name="Address2" type="text" placeholder="Address2" formControlName="Address2">
+              </ion-input>
+            </ion-item>
+             
+            <ion-item>
+              <ion-input name="Province" type="text" placeholder="State/Province" formControlName="Province">
+            </ion-input></ion-item>
+ <ion-row>
+   <ion-col>
+    <ion-item> 
+      <ion-input name="City" type="text" placeholder="City" formControlName="City" >
+      </ion-input></ion-item>
+   </ion-col>
+   <ion-col>
+
+    <ion-item>
+      <ion-input placeholder="Zipcode" formControlName="Zipcode" pattern="[0-9]*" type="tel" maxlength="5"  >
+    </ion-input>
+  </ion-item>
+   </ion-col>
+ </ion-row>             
+                 
+            <div class="container">
+
+              <ion-item>
+                <ion-label>Catageory</ion-label>
+                <!-- <ion-select formControlName="catageory" placeholder="Select Categeory" #mySelect
+                (select)='onOptionsSelected(mySelect.value)' > -->
+                
+                 <ion-select formControlName="catageory" placeholder="Select Categeory" (ionChange)="onChange($event)"  >
+              
+                  <ion-select-option *ngFor="let categeorys of categeory" value="{{categeorys.id}}">{{categeorys.name}}</ion-select-option> 
+                </ion-select>
+                </ion-item>
+
+                <ion-item>
+  
+                <ion-label>SubCatageory</ion-label>
+                <ion-select  formControlName="subCatageory"  [disabled]="disableBtn" placeholder="Select SubCategeory">
+                 
+                  <ion-select-option *ngFor="let subcategeorys of subcategeory" value="{{subcategeorys.name}}">{{subcategeorys.name}}
+                  </ion-select-option>
+  
+                </ion-select>
+              </ion-item>
+              
+            </div>         
+
+           
+            <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-textarea  formControlName="discription" placeholder="Discription"></ion-textarea>
+            </ion-item>
+           
+            
+          </div>
+<div class="container text-center">
+<img *ngFor='let url of urls'[src]="url" height="80" ><br>
+<input type="file" (change)="onselect($event)" multiple>
+</div>
+
+          <div class="ion-padding">
+            <!-- <ion-button size="large"  (click)="upload()" color="primary" type="submit"
+              expand="block">Upload Image &nbsp;<ion-spinner *ngIf="loading"></ion-spinner>
+
+            </ion-button> -->
+            <ion-title *ngIf="!store" class="ion-text-center">Create New Store</ion-title>
+            <ion-title *ngIf="store" class="ion-text-center">Edit Store</ion-title>  
+         
+            <ion-button  *ngIf="!store" size="large" [disabled]="createStoreForm.invalid" (click)="save()"
+             color="primary" type="submit"
+              expand="block">SAVE ! &nbsp;<ion-spinner *ngIf="loading"></ion-spinner>
+
+            </ion-button>
+
+            <ion-button  *ngIf="store" size="large" [disabled]="createStoreForm.invalid" (click)="save()"
+            color="primary" type="submit"
+             expand="block">Update ! &nbsp;<ion-spinner *ngIf="loading"></ion-spinner>
+
+           </ion-button>
+
+           <ion-button  *ngIf="store" size="large"  (click)="delete(store._id)"
+            color="primary" type="submit"
+             expand="block">
+             <ion-icon name="trash"></ion-icon>
+             Delete ! &nbsp;<ion-spinner *ngIf="loading"></ion-spinner>
+
+           </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

@@ -1,0 +1,85 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"> {{proname+" "}} Orders
+         </ion-title>
+ </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+   <ion-toolbar>
+    <ion-searchbar   class="homeSearch"   (ionInput) ="mySearch($event)"  slot="secondary"  autocomplete="off"
+      autocorrect="off"
+      spellcheck="true"
+      animated="true" color="light" placeholder="Search by Order ID"></ion-searchbar>
+  
+   </ion-toolbar>
+  
+    <ion-toolbar color="light">
+       
+    
+      <ion-item class="dropdown"  >
+        <ion-label>Filter </ion-label>
+        <ion-select interface="popover"  name="filter" placeholder="New Orders" (ionChange)="onChange($event)" >
+          <ion-select-option value="1">New Orders</ion-select-option>
+          <ion-select-option value="2">Confirmed Orders</ion-select-option>
+          <ion-select-option value="3">Cancelled Orders</ion-select-option>
+          <ion-select-option value="4">Delivered Orders</ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+   </ion-toolbar>
+      <ion-card>
+   
+ 
+  <ion-slides   pager="true" >
+    <ion-slide *ngFor="let pro of proimages" >
+  
+      <ion-fab verical="top" horizontal="end" slot="fixed" >
+        <ion-fab-button >
+          <div class="cart-length">{{totalorders}}</div>
+        </ion-fab-button>
+          </ion-fab>
+      
+      <img  src="{{baseimageurl}}{{pro}}" failedUrl="image"  onerror="this.src='assets/icon/noimage.png'"/>
+  
+    </ion-slide>
+    </ion-slides>
+   
+</ion-card>
+<ion-card *ngFor="let ord of orders">
+  <ion-card-header>
+   Order ID# <ion-title><b>{{ord._id}}</b></ion-title>
+  </ion-card-header>
+  <ion-card-content>
+   Ordered By:
+    <ion-label color="secondary">
+{{ord.orderbyemail}}
+    </ion-label>
+    <br>
+ Quantity:
+    <ion-label color="secondary">
+{{ord.productCount}}
+  </ion-label >
+  Payment type:
+  <ion-label color="secondary">
+    {{ord.paymentType}}
+      </ion-label>
+
+      <ion-button class="trashbtn" color="danger" fill="clear" (click)="deleteorder(ord._id)">
+        <ion-icon name="trash"  > </ion-icon>
+    </ion-button>
+    
+      <br>
+  Order Date & time:
+      <ion-label color="secondary">
+        {{ord.Date +" & " +ord.Time}}
+          </ion-label>
+          
+</ion-card-content>
+</ion-card>
+</ion-content>

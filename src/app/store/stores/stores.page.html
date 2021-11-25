@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons> 
+    <ion-title class="ion-text-center"> Stores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-toolbar>
+  <ion-searchbar   class="homeSearch"   (ionInput) ="mySearch($event)"  slot="secondary"  autocomplete="off"
+   autocorrect="off"
+   spellcheck="true"
+   animated="true" color="light" placeholder="Search By Name"></ion-searchbar>
+    <!-- autocomplete="true" spellcheck="true"  -->
+  </ion-toolbar>
+  
+    <ion-card   *ngFor="let stor of stores">
+  <ion-card-content >
+
+    <img  class="image"  
+      width="50px" height="50px" src="{{baseimageurl}}{{stor.mainimage}}" 
+    failedUrl="image" onerror="this.src='assets/icon/avatar.jpg'"/>
+    <div text-center>
+    
+      <ion-label class="name" >{{stor.name}}</ion-label>
+      <br>
+      <ion-label class="id " >{{stor._id}}</ion-label>
+    
+      </div>
+
+      <ion-button class="buttonicon" color="danger" fill="clear" slot="end" (click)="delete(stor)" >
+        <ion-icon name="trash" ></ion-icon>
+      </ion-button>  
+    
+    
+    <ion-button   class="buttonicon" fill="clear"  (click)="openEditPopup(stor)" >
+      <ion-icon name="create" ></ion-icon>
+    </ion-button>  
+    
+    
+    
+  </ion-card-content>
+    </ion-card>
+<!--   
+  <ion-grid>
+    <ion-row>
+
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let stor of stores" class="line">
+<ion-row>
+  <ion-col size="12">
+
+      <img  src="{{baseimageurl}}{{stor.mainimage}}" failedUrl="image"  onerror="this.src='assets/icon/book.png'"/>
+
+  </ion-col>
+
+<ion-col size="12" >
+
+  <ion-label (click)="showproduct(stor._id)">
+  {{stor.name}}
+  </ion-label>
+
+
+</ion-col>
+
+ <ion-col size="7">
+
+  <ion-label color="secondary">
+    {{"Rs"+ stor.price}}
+  
+  </ion-label>  
+
+
+</ion-col> 
+
+ <ion-col size="2" >
+
+  <ion-button class="buttonicon" (click)="openEditPopup(stor)" fill="clear">
+    <ion-icon name="create" slot="end" ></ion-icon>
+  </ion-button>
+</ion-col>
+<ion-col size="2" class="ion-text-right">
+
+  <ion-button class="buttonicon" fill="clear" (click)="delete(stor)" >
+  <ion-icon name="trash" ></ion-icon>
+</ion-button>  
+
+</ion-col>
+
+</ion-row>
+     
+</ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>

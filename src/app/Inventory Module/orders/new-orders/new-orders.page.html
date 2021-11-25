@@ -1,0 +1,72 @@
+<ion-header>
+  
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"> Orders </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+  
+<ion-content>
+  
+  <ion-toolbar >
+    <ion-item class="dropdown">
+      <ion-label>SearchBy </ion-label>
+      <ion-select interface="popover" (ionChange)="onChange($event)">
+        <ion-select-option value="1">Order ID </ion-select-option>
+        <ion-select-option value="2">Product Name</ion-select-option>
+        <ion-select-option value="3">Seller Name</ion-select-option>
+        <ion-select-option value="4">Seller Email</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-searchbar   class="homeSearch"   (ionInput) ="mySearch($event)"  slot="secondary"  autocomplete="off"
+   autocorrect="off"
+   spellcheck="true"
+   animated="true"  placeholder="{{searchph}}" color="light" ></ion-searchbar>
+  </ion-toolbar>
+
+
+<ion-card  sizeSm="2" sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let p of orders" class="line">
+
+    <ion-card-header>
+      Order ID :
+      <ion-card-title >
+        <b> {{p._id}} </b>  
+        </ion-card-title>
+    
+    </ion-card-header>
+    
+   <ion-card-content>
+    <b> Product Name:</b>
+    
+       <ion-label id="pronamel" color="dark">
+      <b>{{p.productname}}</b>  
+    </ion-label>
+   <br>
+    
+   <b> Seller Name:</b> 
+    <ion-label id="pronamel" color="dark">
+        <b>{{p.sellername}}</b>
+    </ion-label>
+<br>
+    
+  <b>Seller Email:</b>  
+    <ion-label id="pronamel" color="dark">
+      <b> {{p.ordertoemail}} </b>  
+    </ion-label>
+  <br>
+
+<div class="ion-text-center">
+
+  <ion-button   size="small" class="trashbtn" fill="clear" (click)="deleteorder(p._id)">
+    <ion-icon name="trash"  color="danger" > </ion-icon>
+  </ion-button>
+  
+</div>
+
+</ion-card-content>
+    
+  </ion-card>
+</ion-content>

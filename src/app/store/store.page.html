@@ -1,0 +1,129 @@
+  <ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button   defaultHref="home"></ion-back-button>
+      </ion-buttons>
+      <ion-title class="ion-text-center">My Store</ion-title>
+      <ion-button *ngIf="!singlestore" slot="end" (click)="openAddModal()" color="success">
+        Create Store </ion-button>
+        <ion-button *ngIf="singlestore" slot="end" (click)="openEditPopup(singlestore)" color="success">
+          edit Store </ion-button>
+    </ion-toolbar>
+  </ion-header>
+
+
+<ion-content *ngIf="singlestore" >
+
+
+
+  <ion-card *ngFor="let stor of store">
+    <ion-card-header>
+  
+
+    <ion-slides    pager="true" >
+    <ion-slide *ngFor="let img of stor.image_url" >
+      <img  src="{{baseimageurl}}{{img}}" failedUrl="image"  onerror="this.src='assets/icon/book.png'"/>
+    </ion-slide>
+    </ion-slides>
+  </ion-card-header>
+
+    <ion-card-content>
+      <ion-fab vertical="top" edge horizontal="end"  slot="fixed" >
+        <ion-fab-button class="main button" >
+            <ion-icon  name="create"   ></ion-icon>
+        </ion-fab-button>
+    
+        <ion-fab-list side="start">
+          <ion-fab-button color="secondary" class="edit-button" (click)="openEditPopup(singlestore)">
+            <ion-icon class="edit-icon" name="create"   ></ion-icon>
+        </ion-fab-button>
+    </ion-fab-list>
+    
+        <ion-fab-list side="top">
+      <ion-fab-button color="secondary" class="edit-button" (click)="addnewproduct()">
+          <ion-icon class="edit-icon" name="add"   ></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    
+      <ion-fab-list side="bottom">    
+      <ion-fab-button color="danger" class="edit-button" (click)="deletestor(singlestore)">
+        <ion-icon class="edit-icon" name="trash"   ></ion-icon>
+    </ion-fab-button>
+    
+        </ion-fab-list>
+      </ion-fab>
+
+      <ion-title class="ion-text-center" color="primary">  {{stor.name}}</ion-title>
+   Address :
+   <ion-label color="secondary">  {{stor.Address1+","+stor.City+","+stor.Province+","+stor.Zipcode}}</ion-label><br>
+ Phone#
+ <ion-label  color="secondary">  {{stor.Phone}}</ion-label><br>
+ Catageory :
+ <ion-label  color="secondary">  {{stor.catageory}}</ion-label><br>
+</ion-card-content>
+  </ion-card>
+
+<ion-card>
+<ion-card-title class="ion-text-center">Store Products</ion-card-title>
+      <ion-grid>
+          <ion-row>
+      <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let product of products" class="line">
+<ion-row>
+
+
+  <ion-col size="12">
+    <!-- <ion-thumbnail slot="start" > -->
+      <img  src="{{baseimageurlpro}}{{product.mainimage}}" failedUrl="image"  onerror="this.src='assets/icon/book.png'"/>
+       <!-- <ion-img *ngIf="!image ||  image=='null' " [src]="'assets/icon/book.png'">
+      </ion-img>          
+    </ion-thumbnail> -->
+
+  </ion-col>
+
+<ion-col size="12" >
+
+  <ion-label>
+  {{product.name}}
+  </ion-label>
+
+
+</ion-col>
+
+ <ion-col size="7">
+
+  <ion-label color="secondary">
+    {{"Rs"+ product.price}}
+  
+  </ion-label>  
+
+
+</ion-col> 
+
+ <ion-col size="2" >
+
+  <ion-button class="buttonicon" (click)="openEditPopup(product)" fill="clear">
+    <ion-icon name="create" slot="end" ></ion-icon>
+  </ion-button>
+</ion-col>
+<ion-col size="2" class="ion-text-right">
+
+  <ion-button class="buttonicon" fill="clear" (click)="deletepro(product)" >
+  <ion-icon name="trash" ></ion-icon>
+</ion-button>  
+
+</ion-col>
+
+</ion-row>
+     
+</ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>
+</ion-content>
+
+<ion-content  *ngIf="!singlestore" >
+ 
+  <ion-icon class="emptypageicon" name="storefront" fill ="clear" ></ion-icon>
+  <br>
+ <ion-label class="emptypagetext" color="secondary">Create A Store now</ion-label>
+</ion-content>

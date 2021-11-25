@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="home"></ion-back-button>
+      </ion-buttons>
+       <ion-title class="ion-text-center">
+          Users
+      </ion-title>
+
+      <ion-label class="total" slot="end">
+         {{totalusers}}
+      </ion-label>
+     
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-content>
+    <ion-toolbar color="light">
+      <ion-item class="dropdown">
+        <ion-label>Searchby </ion-label>
+        <ion-select interface="popover" (ionChange)="onChange($event)">
+          <ion-select-option value="1">ID</ion-select-option>
+          <ion-select-option value="2">EMAIL</ion-select-option>
+          <ion-select-option value="3">Name</ion-select-option>
+        </ion-select>
+      </ion-item>
+       <ion-searchbar   class="homeSearch" slot="end"   (ionInput) ="mySearch($event)"   autocomplete="off"
+        autocorrect="off"
+        spellcheck="true"
+        animated="true" placeholder="{{searchph}}" color="light" ></ion-searchbar>
+       
+      
+      
+    </ion-toolbar>
+
+  <!-- <ion-toolbar>
+    <ion-searchbar   class="homeSearch"   (ionInput) ="mySearch($event)"  slot="secondary"  autocomplete="off"
+      autocorrect="off"
+      spellcheck="true"
+      animated="true" color="light" placeholder="Search by Order ID"></ion-searchbar>
+  
+   </ion-toolbar> -->
+
+   <ion-card *ngFor="let user of users">
+  <ion-grid>
+    <ion-row>
+          <ion-col size="3" *ngIf="user.avatar">
+            <img class="profile-picture"  src="{{baseimageurl}}{{user.avatar}}" width="50px" height="50px"  
+            onerror="this.onerror=null;this.src='../assets/icon/avatar.jpg';"
+          />
+          </ion-col>
+
+          <ion-col size="3" *ngIf="!user.avatar">
+            <img class="profile-picture"  src="../assets/icon/avatar.jpg" width="50px" height="50px"  
+            onerror="this.onerror=null;this.src='../assets/icon/avatar.jpg';"
+          />
+          </ion-col>
+
+          <ion-col size="9">
+            <b>ID:</b>       <ion-label>{{user._id}}</ion-label><br>
+            <b>Name:</b>       <ion-label>{{user.name}}</ion-label><br>
+<b>Email:</b> <ion-label>{{user.email}}</ion-label> <br>
+
+<ion-button class="trashbtn" color="primary"  (click)="edituser(user.email)">
+  Edit<ion-icon name="create"  > </ion-icon>
+</ion-button>
+
+<ion-button class="trashbtn" color="danger"   (click)="deleteuser(user._id)">
+  Delete<ion-icon name="trash"  > </ion-icon>
+</ion-button>
+
+
+          </ion-col>
+        
+    </ion-row>
+  </ion-grid>
+  
+</ion-card>
+</ion-content>

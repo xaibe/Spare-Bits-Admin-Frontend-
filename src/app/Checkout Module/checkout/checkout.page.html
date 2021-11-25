@@ -1,0 +1,139 @@
+<ion-header>
+
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button  defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center"> Checkout</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <ion-card >
+<ion-card-header class="ion-text-center">
+  <ion-card-title><b> <ion-label >Delivery Details</ion-label></b></ion-card-title>
+</ion-card-header>
+
+<ion-card-content>
+  <form [formGroup]="CheckoutForm">
+   
+    <ion-item>
+      <ion-label>Use Default Credentials</ion-label>
+      <ion-toggle slot="start" name="credentialtoggle"  (ionChange)="change()" color="secondary" checked></ion-toggle>
+    </ion-item>
+
+    <ion-item class="iteem" >
+      <ion-input class="inputtext"  [disabled]="default" name="Address" type="text" placeholder="{{buyerAddress}}" formControlName="Address"></ion-input>
+
+
+    </ion-item>
+    <ion-item class="iteem" >
+      <!-- <ion-label>Phone #</ion-label> -->
+      <ion-input name="phone" [disabled]="default" type="tel" pattern="[0-9]*" placeholder="{{buyerphone}}" maxlength="11" formControlName="phone"></ion-input>
+  
+
+    </ion-item>
+
+  <ion-list>
+  <ion-radio-group (ionChange)="radioGroupChange($event)" >
+
+    <ion-list-header class="ion-text-center">
+      <ion-label> <b>Select Payment Method</b></ion-label>
+    </ion-list-header>
+
+    <ion-item>
+      <ion-img class="easypaisa" src="assets/icon/easypaisa.png"></ion-img>
+
+      <ion-label class="ion-text-center"><b> Easypaisa Wallet </b></ion-label>
+      <ion-radio slot="end" color="primary" value="easypaisa"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      
+      <ion-img class="easypaisa" src="assets/icon/blackrupee.png"></ion-img>
+
+      <ion-label class="ion-text-center"><b>Cash on Delivery </b> </ion-label>
+      <ion-radio slot="end" color="secondary" value="cash"></ion-radio>
+    </ion-item>
+
+
+  <ion-item >
+  <ion-input name="easyphone" [hidden]="hid" type="tel" pattern="[0-9]*" placeholder=" Enter Easypaisa Account Number" maxlength="11" formControlName="easyphone"></ion-input>
+</ion-item>  
+
+
+  </ion-radio-group>
+
+</ion-list>
+
+
+  </form> 
+</ion-card-content>
+</ion-card>
+
+
+  <ion-list> 
+<ion-item>
+  <ion-grid>
+    <ion-row
+      sizeLg="4"
+      sizeMd="4"
+      sizeXs="6"
+      *ngFor="let p of cart"
+      class="line"
+    >
+      <ion-col size="6">
+        <img
+          src="{{baseimageurl}}{{p.mainimage}}"
+          failedUrl="image"
+          onerror="this.src='assets/icon/book.png'"
+        />
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-row>
+          <b>{{p.name}}</b>
+        </ion-row>
+        <ion-row> {{p.amount * p.price |currency:'PKR'}} </ion-row>
+
+        <ion-row> Discount: {{  p.discount   |currency:'PKR'}} </ion-row>
+
+
+        <ion-row>
+          
+          Quantity: {{p.amount}}
+          <!-- <ion-col  >
+        
+          </ion-col> -->
+
+
+        </ion-row>
+        
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+  </ion-item>
+
+<ion-item lines="full">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+Total:
+      </ion-col>
+      <ion-col size="6" class="ion-text-end">
+          Total= {{Total}}
+          
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-item>
+
+</ion-list>
+<ion-button color="primary" expand="full" (click)="Paynow()">
+Paynow
+</ion-button>
+
+</ion-content>
